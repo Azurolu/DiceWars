@@ -25,8 +25,8 @@ public class Carte {
 		int i = 0;
 		for(String s : lignes) {
 			int j = 0;
-			for(String sbis : s.split(";")) {
-				if(sbis != null) {
+			for(String sbis : s.trim().split(";")) {
+				if(!sbis.equals("")) {
 					carte[i][j] = new Territoire(i*base + j);
 				}
 				j++;
@@ -72,6 +72,21 @@ public class Carte {
 			}
 		}
 		return true;
+	}
+	
+	public String toString() {
+		String affichage = "";
+		for(Territoire[] tcrochets : this.carte) {
+			for(Territoire t : tcrochets) {
+				if(t != null) {
+					affichage += "| " + t.toString() + " |";
+				}
+				else
+					affichage += "|                          |";
+			}
+			affichage += "\n";
+		}
+		return affichage;
 	}
 
 }

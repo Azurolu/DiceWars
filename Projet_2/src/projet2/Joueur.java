@@ -12,6 +12,10 @@ public class Joueur {
 		baseId += 1;
 	}
 	
+	public int getId() {
+		return this.ID;
+	}
+	
 	public void jouer() {
 		Scanner sc = new Scanner(System.in);
 		

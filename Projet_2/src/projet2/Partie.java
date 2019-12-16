@@ -10,6 +10,7 @@ public class Partie {
 			j = new Joueur();
 		}
 		Carte carte = new Carte(Paths.get("carte.csv"));
+		System.out.println(carte);
 	}
 
 }
