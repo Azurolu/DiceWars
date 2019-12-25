@@ -34,9 +34,9 @@ public class Territoire {
 	
 	public String toString() {
 		if(this.proprio == null) {
-			return "Joueur : aucun;" + "NbDés : " + Integer.toString(this.nbDes);
+			return "Joueur : aucun;" + "Dice : " + Integer.toString(this.nbDes);
 		}
 		else
-			return "Joueur : " + Integer.toString(proprio.getId()) + ";" + "NbDés : " + Integer.toString(this.nbDes);
+			return "Joueur : " + Integer.toString(proprio.getId()) + ";" + "Dice : " + Integer.toString(this.nbDes);
 	}
 }
