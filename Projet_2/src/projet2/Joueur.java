@@ -19,8 +19,13 @@ public class Joueur {
 	public void jouer() {
 		Scanner sc = new Scanner(System.in);
 		
-		//if(sc.next().equals("q"))
-			
+		boolean check = false;
+		while(!check) {
+			if(sc.next().equals("q")) {
+				check = true;
+			}
+		}
+		//endTurn;		
 	}
 	
 	public boolean equals(Joueur j) {
