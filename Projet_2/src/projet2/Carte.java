@@ -36,6 +36,18 @@ public class Carte {
 		lignes.clear();
 	}
 	
+	public int getNbTerritoires() {
+		int nb = 0;
+		for(Territoire[] tcrochets : this.carte) {
+			for(Territoire t : tcrochets) {
+				if(t != null) {
+					nb++;
+				}
+			}
+		}
+		return nb;
+	}
+	
 	public Territoire[][] getCarte(){
 		return this.carte;
 	}
@@ -63,12 +75,40 @@ public class Carte {
 		return retour;
 	}
 	
+	public boolean attributionJoueurs() {
+		for(Territoire[] tcrochets : this.carte) {
+			for(Territoire t : tcrochets) {
+				if(t != null) {
+					if(t.getProprio() == null) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
+	
+	public boolean attributionDes() {
+		for(Territoire[] tcrochets : this.carte) {
+			for(Territoire t : tcrochets) {
+				if(t != null) {
+					if(t.getNbDes() == 0) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
+	
 	public boolean victoire() {
 		Joueur joueur = this.carte[0][0].getProprio();
 		for(Territoire[] tcrochets : this.carte) {
 			for(Territoire t : tcrochets) {
-				if(joueur != t.getProprio())
-					return false;
+				if(t != null) {
+					if(joueur != t.getProprio())
+						return false;
+				}
 			}
 		}
 		return true;
@@ -82,7 +122,7 @@ public class Carte {
 					affichage += "| " + t.toString() + " |";
 				}
 				else
-					affichage += "|                          |";
+					affichage += "|                     |";
 			}
 			affichage += "\n";
 		}
