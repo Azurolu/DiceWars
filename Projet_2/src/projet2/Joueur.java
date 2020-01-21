@@ -38,13 +38,25 @@ public class Joueur {
 	public void jouer(Jeu j) throws AttaqueTerritoireJoueur, ErreurAttaqueNonVoisin, ErreurTerritoireDe, ErreurJoueurPossesseur {
 		Scanner sc = new Scanner(System.in);
 		boolean check = false;
-		while(!check) {
-			if(sc.next().equals("q")) {
-				check = true;
+		do{
+			String input = sc.nextLine();
+			System.out.println("Entrez 'q' pour mettre fin au tour et 'a' pour attaquer.");
+			switch(input){
+				case "q":
+					System.out.println("Fin du tour");
+                    			end = true;
+                    			break;
+				case "a":
+					initiateAttack();
+					break;
 			}
-			else {
+		}while(!check);
+		sc.close();		
+	}
+	
+	private static void initiateAttack(){
 				j.getCarte().toString();
-				System.out.println("Indiquer l'attaque a orchestré sous le format : idAttaquant idAttaqué");
+				System.out.println("Entrez l'attaque a effectuer sous le format : idAttaquant idAttaqué");
 				Scanner att = new Scanner(System.in);
 				String[] reponse = att.nextLine().split(" ");
 				Territoire attaquant = j.getCarte().getTerritoire(Integer.parseInt(reponse[0]));
@@ -61,12 +73,8 @@ public class Joueur {
 				else if(attaquant.getProprio() != this) {
 					throw new ErreurJoueurPossesseur();
 				}
-				check = j.attaquer(attaquant.getId(), attaque.getId());
-				System.out.println("Tappez q si vous souhaitez arrêter de jouer sinon tapez n'importe quoi");
-			}
-		}
-		//endTurn;		
-	}
+				j.attaquer(attaquant.getId(), attaque.getId());
+	}	
 	
 	private static boolean appartientVoisins(Territoire attaque, Territoire[] voisins) {
 		for(Territoire t : voisins) {
