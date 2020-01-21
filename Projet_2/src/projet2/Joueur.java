@@ -43,8 +43,10 @@ public class Joueur {
 				check = true;
 			}
 			else {
+				j.getCarte().toString();
 				System.out.println("Indiquer l'attaque a orchestré sous le format : idAttaquant idAttaqué");
-				String[] reponse = sc.nextLine().split(" ");
+				Scanner att = new Scanner(System.in);
+				String[] reponse = att.nextLine().split(" ");
 				Territoire attaquant = j.getCarte().getTerritoire(Integer.parseInt(reponse[0]));
 				Territoire attaque = j.getCarte().getTerritoire(Integer.parseInt(reponse[1]));
 				if(attaquant.getProprio() == attaque.getProprio()) {
@@ -60,7 +62,7 @@ public class Joueur {
 					throw new ErreurJoueurPossesseur();
 				}
 				check = j.attaquer(attaquant.getId(), attaque.getId());
-				System.out.println("Tappez q si vous souhaitez arrêter de jouer");
+				System.out.println("Tappez q si vous souhaitez arrêter de jouer sinon tapez n'importe quoi");
 			}
 		}
 		//endTurn;		
