@@ -80,4 +80,44 @@ public class Joueur {
 		return this.ID == j.ID;
 	}
 
+	private void attaquer(Territoire attaquant, Territoire attaque) {
+
+        int attaqueTotale = calculTotal(attaquant.getNbDes());
+        int defenseTotale = calculTotal(attaque.getNbDes());
+
+        System.out.println("Degats infliges : " + attaqueTotale);
+        System.out.println("Degats subits : " + defenseTotale);
+
+
+        if(attaqueTotale > defenseTotale){
+            System.out.println(attaquant.getProprio().getListeTerritoire());
+            System.out.println(attaque.getProprio().getListeTerritoire());
+            gagner(attaquant, attaque);
+            System.out.println(attaquant.getProprio().getListeTerritoire());
+            System.out.println(attaque.getProprio().getListeTerritoire());
+            return attaquant;
+        }else{
+            perdre(attaquant, attaque);
+        }
+    }
+    
+	private int calculTotal(int nbdes) {
+        	int total = 0;
+
+       	 	for(int i = 0; i < nbdes; i++) {
+            		int tmp = new Random().nextInt(6) + 1;
+            		total += tmp;
+        	}
+        	return total;
+    	}
+
+	private void gagner(){
+    		//Le territoire va dans la liste de territoires du gagnant
+    		//Incremente le compteur de des du tour
+	}
+
+	private void perdre(){
+    		//Aucune idee
+	}
+	
 }
