@@ -88,6 +88,16 @@ public class Carte {
 		return true;
 	}
 	
+	public void attributiontTerritoires() {
+		for(Territoire[] tcrochets : this.carte) {
+			for(Territoire t : tcrochets) {
+				if(t != null) {
+					t.getProprio().setNbTerritoire(t.getProprio().getNbTerritoire()+1);
+				}
+			}
+		}
+	}
+	
 	public boolean attributionDes() {
 		for(Territoire[] tcrochets : this.carte) {
 			for(Territoire t : tcrochets) {
@@ -108,6 +118,33 @@ public class Carte {
 				if(t != null) {
 					if(joueur != t.getProprio())
 						return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	public int getNbTotalDes(Joueur j) {
+		int des = 0;
+		for(Territoire[] tcrochets : this.carte) {
+			for(Territoire t : tcrochets) {
+				if(t != null) {
+					if(t.getProprio().equals(j))
+						des += t.getNbDes();
+				}
+			}
+		}
+		return des;
+	}
+	
+	public boolean reattributionDes(Joueur j) {
+		for(Territoire[] tcrochets : this.carte) {
+			for(Territoire t : tcrochets) {
+				if(t != null) {
+					if(t.getProprio().equals(j))
+						if(t.getVisite() == false) {
+						return false;
+					}
 				}
 			}
 		}
