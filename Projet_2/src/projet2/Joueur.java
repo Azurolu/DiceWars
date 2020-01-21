@@ -49,6 +49,9 @@ public class Joueur {
 				case "a":
 					initiateAttack();
 					break;
+				default:
+					System.out.println("Veuillez recommencer.");
+					break;
 			}
 		}while(!check);
 		sc.close();		
