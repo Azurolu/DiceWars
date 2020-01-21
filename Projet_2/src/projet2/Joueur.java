@@ -82,24 +82,24 @@ public class Joueur {
 
 	private void attaquer(Territoire attaquant, Territoire attaque) {
 
-        int attaqueTotale = calculTotal(attaquant.getNbDes());
-        int defenseTotale = calculTotal(attaque.getNbDes());
+        	int attaqueTotale = calculTotal(attaquant.getNbDes());
+        	int defenseTotale = calculTotal(attaque.getNbDes());
 
-        System.out.println("Degats infliges : " + attaqueTotale);
-        System.out.println("Degats subits : " + defenseTotale);
+        	System.out.println("Degats infliges : " + attaqueTotale);
+        	System.out.println("Degats subits : " + defenseTotale);
 
 
-        if(attaqueTotale > defenseTotale){
-            System.out.println(attaquant.getProprio().getListeTerritoire());
-            System.out.println(attaque.getProprio().getListeTerritoire());
-            gagner(attaquant, attaque);
-            System.out.println(attaquant.getProprio().getListeTerritoire());
-            System.out.println(attaque.getProprio().getListeTerritoire());
-            return attaquant;
-        }else{
-            perdre(attaquant, attaque);
-        }
-    }
+        	if(attaqueTotale > defenseTotale){
+            		System.out.println(attaquant.getProprio().getListeTerritoire());
+            		System.out.println(attaque.getProprio().getListeTerritoire());
+            		gagner(attaquant, attaque);
+            		System.out.println(attaquant.getProprio().getListeTerritoire());
+            		System.out.println(attaque.getProprio().getListeTerritoire());
+            		return attaquant;
+        	}else{
+        	    	perdre(attaquant, attaque);
+        	}
+    	}
     
 	private int calculTotal(int nbdes) {
         	int total = 0;
@@ -117,7 +117,7 @@ public class Joueur {
 	}
 
 	private void perdre(){
-    		//Aucune idee
+    		//Set le nombre de des du territoire perdant a 1
 	}
 	
 }
