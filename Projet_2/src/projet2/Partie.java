@@ -9,11 +9,21 @@ public class Partie {
 			joueurs[i] = new Joueur();
 		}
 		Carte carte = new Carte(Paths.get("carte.csv"));
-		Jeu j = new Jeu(carte.getNbTerritoires(), joueurs, carte);
+		int limiteTerritoire = carte.getNbTerritoires();
+		while(limiteTerritoire%(joueurs.length) != 0) {
+			limiteTerritoire--;
+		}
+		Jeu j = new Jeu(limiteTerritoire, joueurs, carte);
 		int tour = 0;
 		while(!carte.victoire()) {
-			System.out.println("C'est à joueur " + joueurs[tour%(joueurs.length)].getId() + " de jouer");
-			joueurs[tour%(joueurs.length)].jouer();
+			System.out.println("C'est au joueur " + joueurs[tour%(joueurs.length)].getId() + " de jouer");
+			int nbDesDebut = joueurs[tour%(joueurs.length)].getNbDes();
+			try {
+				joueurs[tour%(joueurs.length)].jouer(j);
+			} catch (AttaqueTerritoireJoueur | ErreurAttaqueNonVoisin | ErreurTerritoireDe | ErreurJoueurPossesseur e) {
+				e.printStackTrace();
+			}
+			j.finTour(nbDesDebut, joueurs[tour%(joueurs.length)].getNbDes()); // on recalcule apres le changement des des
 			System.out.println(carte);
 			tour++;
 		}
